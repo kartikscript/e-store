@@ -26,7 +26,7 @@ function App() {
   return (
     <>
      <main className='h-screen relative  flex sm:flex-row flex-col bg-white'>
-      <div onClick={()=>setIsMenuOpen(true)} className='bg-white *:size-8 p-2 sm:hidden'>
+      <div onClick={()=>setIsMenuOpen(true)} className='fixed top-0 left-0 w-full shadow bg-white *:size-8 p-2 sm:hidden'>
         <Menu/> 
       </div>
       {isMenuOpen &&
@@ -34,7 +34,7 @@ function App() {
       
       }
       <div className={`relative z-50 h-screen sm:w-52 ${isMenuOpen?"w-52":"w-0"} overflow-hidden transition-all`}>
-        <aside className={`h-full sm:w-52 ${isMenuOpen?"w-52 p-4":"w-0"} overflow-hidden fixed top-0 left-0 bg-[#F7F7F7] flex flex-col justify-between  sm:py-8 sm:pl-3 sm:pr-6 border-r border-slate-300`}>
+        <aside className={`h-full sm:w-52 ${isMenuOpen?"w-52 p-4":"w-0"} transition-all overflow-hidden fixed top-0 left-0 bg-[#F7F7F7] flex flex-col justify-between  sm:py-8 sm:pl-3 sm:pr-6 border-r border-slate-300`}>
           <main className='space-y-5'>
             <div className=' flex items-center gap-0.5 px-3 py-1.5 bg-[#F0F0F0] border border-[#ddd] rounded-lg'>
               <Search className='opacity-30 size-5'/>
