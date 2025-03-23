@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import {  Bookmark, ChevronRight, CircleHelp, MessageSquareWarning, Search } from 'lucide-react'
+import {  Bookmark, ChevronRight, CircleHelp, Menu, MessageSquareWarning, Search } from 'lucide-react'
 
 
 const navLinks = [
@@ -22,12 +22,19 @@ const navLinks = [
 ]
 function App() {
   const [activeTabId, setActiveTabId] = useState('1')
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <>
-     <main className='h-screen relative overflow-y-scroll flex '>
-      <div className='h-screen w-52 '>
-        <aside className='h-full w-52  fixed top-0 left-0 bg-[#F7F7F7] flex flex-col justify-between py-8 pl-3 pr-6 border-r border-slate-300'>
+     <main className='h-screen relative  flex sm:flex-row flex-col bg-white'>
+      <div onClick={()=>setIsMenuOpen(true)} className='bg-white *:size-8 p-2 sm:hidden'>
+        <Menu/> 
+      </div>
+      {isMenuOpen &&
+      <div onClick={()=>setIsMenuOpen(false)} className='z-40 fixed size-full top-0 left-0 bg-black/10'/>
+      
+      }
+      <div className={`relative z-50 h-screen sm:w-52 ${isMenuOpen?"w-52":"w-0"} overflow-hidden transition-all`}>
+        <aside className={`h-full sm:w-52 ${isMenuOpen?"w-52 p-4":"w-0"} overflow-hidden fixed top-0 left-0 bg-[#F7F7F7] flex flex-col justify-between  sm:py-8 sm:pl-3 sm:pr-6 border-r border-slate-300`}>
           <main className='space-y-5'>
             <div className=' flex items-center gap-0.5 px-3 py-1.5 bg-[#F0F0F0] border border-[#ddd] rounded-lg'>
               <Search className='opacity-30 size-5'/>
@@ -65,9 +72,9 @@ function App() {
         </aside>
       </div>
 
-      <section className='flex-1 space-y-4 p-8 pt-4 pr-16'>
-        <h2 className='font-medium text-2xl'>Popular Products</h2>
-        <div className='grid grid-cols-4 gap-10'>
+      <section className='flex-1 space-y-4 lg:p-8 p-4 sm:pt-4 sm:pr-8 lg:pr-16'>
+        <h2 className='font-medium text-xl sm:text-2xl'>Popular Products</h2>
+        <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6 gap-2'>
             {
               Array.from({length:8}).map((_,i)=>(
                 <div key={i} className='font-semibold text-xl space-y-1 p-2 text-center text-[#222] hover:bg-amber-50 rounded-2xl transition-all'>
